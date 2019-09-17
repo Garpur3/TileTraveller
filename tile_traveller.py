@@ -55,7 +55,7 @@ def move(x, y, h_walls, v_walls):
         x += 1
     elif move_char == "s" and check_south(x,y, h_walls, v_walls):
         y -= 1
-    elif move_char == "w" and check_east(x, y, h_walls, v_walls):
+    elif move_char == "w" and check_west(x, y, h_walls, v_walls):
         x -= 1
     else:
         print("Not a valid direction!")
