@@ -1,13 +1,17 @@
+#We assign each (v)ertival and (h)orizontal wall to a boolean value in these arrays
+#In both arrays we index left to right and down to up
 v_walls = [[False, False, False], [False, True, True], [False, False, True], [False, False, False]]
 h_walls = [[False, False, False], [True, True, True], [True, False, True], [False, False, False]]
 
 x = 1
 y = 1
 
+#Function to print " or" if direction is not the first available direction
 def not_first(is_it):
     if is_it:
         print(" or", end=" ")
 
+#Direction printer, checks if each wall is true
 def print_directions(x, y, h_walls, v_walls):
     next_dir = False
     print("You can travel: ", end="")
@@ -28,6 +32,7 @@ def print_directions(x, y, h_walls, v_walls):
         next_dir = True
     print(".")
 
+#Decentralized wall-checkers
 def check_north(x, y, h_walls, v_walls):
     return h_walls[y][x-1]
 
@@ -40,6 +45,8 @@ def check_south(x, y, h_walls, v_walls):
 def check_west(x, y, h_walls, v_walls):
     return v_walls[x-1][y-1]
 
+
+#Returns x and y variables whether they were updated or not
 def move(x, y, h_walls, v_walls):
     move_char = input("Direction: ").lower()
     if move_char == "n" and check_north(x, y, h_walls, v_walls):
@@ -58,12 +65,14 @@ while True:
 
     print_directions(x, y, h_walls, v_walls)
 
+    #These are used to check whether the x and y values were actually updated
     x0 = x
     y0 = y
 
     while x0 == x and y0 == y:
         x, y = move(x, y, h_walls, v_walls)
 
+    #Victory case
     if x == 3 and y == 1:
         print("Victory!")
         break
